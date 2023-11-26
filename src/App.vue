@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <router-view/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
@@ -14,7 +14,7 @@ export default {
   data: () => ({
     //
   }),
-  created(){
+  created() {
     document.title = "Pix Server"
   }
 };
