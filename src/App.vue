@@ -14,5 +14,8 @@ export default {
   data: () => ({
     //
   }),
+  created(){
+    document.title = "Pix Server"
+  }
 };
 </script>
