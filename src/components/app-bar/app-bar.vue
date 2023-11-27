@@ -44,9 +44,9 @@ export default {
           to: "makeTransfer"
         },
         {
-          title: "Verificar Transferência",
+          title: "Lista de Transferências",
           icon: "mdi-view-list",
-          to: ""
+          to: "listTransfer"
         },
         {
           title: "Adicionar Saldo",

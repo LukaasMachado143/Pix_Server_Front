@@ -7,6 +7,7 @@ import mainView from "@/views/main/mainView.vue";
 import editUserDataMain from "@/views/main/edit-user-data/edit-user-data-main.vue";
 import logOutMain from "@/views/main/log-out/log-out-main.vue";
 import makeTransferMain from "@/views/main/make-transfer/make-transfer-main.vue";
+import listTransferMain from "@/views/main/list-transfer/list-transfer-main.vue";
 
 Vue.use(VueRouter);
 
@@ -47,6 +48,11 @@ const routes = [
         path: "makeTransfer",
         name: "makeTransfer",
         component: makeTransferMain,
+      },
+      {
+        path: "listTransfer",
+        name: "listTransfer",
+        component: listTransferMain,
       },
     ],
   },
