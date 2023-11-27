@@ -1,9 +1,9 @@
 <template>
-  <v-card class="pa-4" max-height="400">
+  <v-card class="pa-4" height="100%" :disabled="hasSelectedUser">
     <h3 class="mb-2">Selecione o destinatário</h3>
     <v-text-field outlined dense color="blue" label="Buscar" placeholder="Digite o nome do destinatário"
-      append-icon="mdi-magnify" :disabled="hasSelectedUser" v-model="searchTerm" />
-    <v-list height="265" style="overflow: auto;">
+      append-icon="mdi-magnify" :disabled="hasSelectedUser" v-model="searchTerm" hide-details class="mb-1" />
+    <v-list height="330" style="overflow: auto;">
       <list-item v-for="user, index in filteredList" :key="index" :userData="user"
         @selectedUser="$emit('selectedUser', $event)" :hasSelectedUser="hasSelectedUser" />
     </v-list>
