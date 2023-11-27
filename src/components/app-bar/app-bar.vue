@@ -35,7 +35,7 @@ export default {
         {
           title: "Realizar Transferência",
           icon: "mdi-swap-horizontal",
-          to: ""
+          to: "makeTransfer"
         },
         {
           title: "Verificar Transferência",
