@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="pa-0">
-    <app-bar/>
+    <app-bar />
     <div class="main-container">
       <router-view />
     </div>
@@ -22,8 +22,7 @@ export default {
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 100%;
+  min-height: 100vh;
 }
 </style>

@@ -57,7 +57,7 @@ export default {
         {
           title: "Editar dados",
           icon: "mdi-account-cog",
-          to: ""
+          to: "editUser"
         },
         {
           title: "Sair",
