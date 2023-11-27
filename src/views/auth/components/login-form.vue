@@ -10,6 +10,9 @@
         <span class="white--text">entrar</span>
       </v-btn>
     </v-col>
+    <p class="text-center mt-2" style="cursor: pointer;" @click="$router.push({ name: 'register' })">
+      Clique aqui para se cadastrar !
+    </p>
   </v-row>
 </template>
 
