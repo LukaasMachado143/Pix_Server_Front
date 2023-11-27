@@ -5,6 +5,7 @@ import login from "@/views/auth/components/login-form.vue";
 import register from "@/views/auth/components/register-form.vue";
 import mainView from "@/views/main/mainView.vue";
 import editUserDataMain from "@/views/main/edit-user-data/edit-user-data-main.vue";
+import logOutMain from "@/views/main/log-out/log-out-main.vue";
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,11 @@ const routes = [
         path: "editUser",
         name: "editUser",
         component: editUserDataMain,
+      },
+      {
+        path: "logOut",
+        name: "logOut",
+        component: logOutMain,
       },
     ],
   },
