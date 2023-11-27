@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-4 mt-16" min-width="500px">
+  <v-card class="pa-4" min-width="500px">
     <h2 class="text-center">Editar dados</h2>
     <v-text-field color="blue" label="Email" append-icon="mdi-email" />
     <v-text-field color="blue" label="Usuário" append-icon="mdi-account" />
