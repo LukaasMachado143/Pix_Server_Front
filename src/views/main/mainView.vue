@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="pa-0">
     <app-bar />
-    <div class="main-container">
+    <div class="main-container pt-16">
       <router-view />
     </div>
   </v-container>
