@@ -12,6 +12,12 @@
       </span>
     </v-toolbar-title>
     <v-spacer />
+    <v-row no-gutters justify="end" align="center" class="mr-4">
+      <v-icon color="white" class="mr-1">
+        mdi-wallet
+      </v-icon>
+      <span class="white--text">R$ 250,00</span>
+    </v-row>
     <v-menu transition="slide-x-transition" close-on-content-click offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn icon class="mr-2" v-bind="attrs" v-on="on">
