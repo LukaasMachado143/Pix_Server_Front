@@ -1,5 +1,6 @@
 <template>
   <v-container fluid class="pa-0">
+    <app-bar/>
     <div class="main-container">
       <router-view />
     </div>
@@ -7,7 +8,9 @@
 </template>
 
 <script>
+import appBar from '@/components/app-bar/app-bar.vue'
 export default {
+  components: { appBar },
 }
 </script>
 
