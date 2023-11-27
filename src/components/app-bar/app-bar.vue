@@ -62,7 +62,7 @@ export default {
         {
           title: "Sair",
           icon: "mdi-account-arrow-left",
-          to: ""
+          to: "logOut"
         },
       ]
     }
