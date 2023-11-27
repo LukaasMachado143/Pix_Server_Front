@@ -6,6 +6,7 @@ import register from "@/views/auth/components/register-form.vue";
 import mainView from "@/views/main/mainView.vue";
 import editUserDataMain from "@/views/main/edit-user-data/edit-user-data-main.vue";
 import logOutMain from "@/views/main/log-out/log-out-main.vue";
+import makeTransferMain from "@/views/main/make-transfer/make-transfer-main.vue";
 
 Vue.use(VueRouter);
 
@@ -41,6 +42,11 @@ const routes = [
         path: "logOut",
         name: "logOut",
         component: logOutMain,
+      },
+      {
+        path: "makeTransfer",
+        name: "makeTransfer",
+        component: makeTransferMain,
       },
     ],
   },
