@@ -12,6 +12,10 @@
       <v-btn color="light-blue lighten-1" width="100%">
         <span class="white--text">cadastrar</span>
       </v-btn>
+      <p class="text-center mt-2" style="cursor: pointer;" @click="$router.push({ name: 'login' })">
+        Clique aqui para se entrar !
+      </p>
+
     </v-col>
   </v-row>
 </template>
