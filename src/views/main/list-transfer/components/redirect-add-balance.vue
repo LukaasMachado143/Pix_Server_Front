@@ -6,5 +6,3 @@
     <h3 class="white--text">Adicionar Saldo ...</h3>
   </v-row>
 </template>
-
-<script>
