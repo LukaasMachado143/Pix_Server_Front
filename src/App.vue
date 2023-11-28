@@ -16,7 +16,7 @@ export default {
   }),
   created() {
     document.title = "Pix Server"
-    this.$router.push({name:'listTransfer'})
+    // this.$router.push({name:'listTransfer'})
   }
 };
 </script>
