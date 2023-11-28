@@ -53,11 +53,6 @@ export default {
           icon: "mdi-wallet-plus",
           to: "updateBalance"
         },
-        {
-          title: "Sobre",
-          icon: "mdi-information",
-          to: ""
-        },
       ],
       userList: [
         {
