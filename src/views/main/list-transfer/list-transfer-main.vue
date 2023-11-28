@@ -14,11 +14,31 @@ export default {
 			transfersList: [
 				{
 					title: 'Recebidas',
-					type: "recived"
+					type: "recived",
+					list: [
+						{ date: '2023-11-27T00:01:00', value: 150 },
+						{ date: '2023-11-27T00:01:00', value: 200 },
+						{ date: '2023-11-27T00:01:00', value: 10 },
+						{ date: '2023-11-27T00:01:00', value: 63 },
+						{ date: '2023-11-27T00:01:00', value: 150 },
+						{ date: '2023-11-27T00:01:00', value: 856 },
+						{ date: '2023-11-27T00:01:00', value: 45 },
+						{ date: '2023-11-27T00:01:00', value: 4 },
+					]
 				},
 				{
 					title: 'Enviadas',
-					type: "sended"
+					type: "sended",
+					list: [
+						{ date: '2023-11-27T00:01:00', value: 12 },
+						{ date: '2023-11-27T00:01:00', value: 1 },
+						{ date: '2023-11-27T00:01:00', value: 150 },
+						{ date: '2023-11-27T00:01:00', value: 150 },
+						{ date: '2023-11-27T00:01:00', value: 152310 },
+						{ date: '2023-11-27T00:01:00', value: 2 },
+						{ date: '2023-11-27T00:01:00', value: 2232 },
+						{ date: '2023-11-27T00:01:00', value: 224 },
+					]
 				},
 
 			]
