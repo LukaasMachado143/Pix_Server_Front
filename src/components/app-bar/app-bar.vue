@@ -16,7 +16,7 @@
       <v-icon color="white" class="mr-1">
         mdi-wallet
       </v-icon>
-      <span class="white--text">R$ 250,00</span>
+      <span class="white--text">{{ setCurrency(2500) }}</span>
     </v-row>
     <v-menu transition="slide-x-transition" close-on-content-click offset-y>
       <template v-slot:activator="{ on, attrs }">
@@ -31,8 +31,8 @@
 </template>
 
 <script>
+import setCurrency from '@/utils/setCurrency'
 import routerList from "./components/router-list.vue"
-
 export default {
   components: { routerList },
   data() {
@@ -44,9 +44,9 @@ export default {
           to: "makeTransfer"
         },
         {
-          title: "Verificar Transferência",
+          title: "Lista de Transferências",
           icon: "mdi-view-list",
-          to: ""
+          to: "listTransfer"
         },
         {
           title: "Adicionar Saldo",
@@ -72,6 +72,9 @@ export default {
         },
       ]
     }
+  },
+  methods: {
+    setCurrency
   }
 
 }
