@@ -8,6 +8,7 @@ import editUserDataMain from "@/views/main/edit-user-data/edit-user-data-main.vu
 import logOutMain from "@/views/main/log-out/log-out-main.vue";
 import makeTransferMain from "@/views/main/make-transfer/make-transfer-main.vue";
 import listTransferMain from "@/views/main/list-transfer/list-transfer-main.vue";
+import updateBalanceMain from "@/views/main/update-balance/update-balance-main.vue";
 
 Vue.use(VueRouter);
 
@@ -53,6 +54,11 @@ const routes = [
         path: "listTransfer",
         name: "listTransfer",
         component: listTransferMain,
+      },
+      {
+        path: "updateBalance",
+        name: "updateBalance",
+        component: updateBalanceMain,
       },
     ],
   },
