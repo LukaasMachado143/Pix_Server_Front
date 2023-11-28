@@ -8,7 +8,7 @@
         <column-chart />
       </v-col>
       <v-col cols="12" sm="6" class="pl-2">
-        <column-chart />
+        <spline-chart />
       </v-col>
     </v-row>
   </div>
@@ -17,10 +17,11 @@
 <script>
 import CardCarouselTransfer from './components/card-carousel-transfer.vue'
 import ColumnChart from './components/charts/column-chart.vue'
+import SplineChart from './components/charts/spline-chart.vue'
 import RedirectAddBalance from './components/redirect-add-balance.vue'
 
 export default {
-  components: { CardCarouselTransfer, RedirectAddBalance, ColumnChart },
+  components: { CardCarouselTransfer, RedirectAddBalance, ColumnChart, SplineChart },
   data() {
     return {
       transfersList: [
@@ -54,7 +55,6 @@ export default {
         },
 
       ],
-
     }
   }
 }
