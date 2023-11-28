@@ -51,7 +51,7 @@ export default {
         {
           title: "Adicionar Saldo",
           icon: "mdi-wallet-plus",
-          to: ""
+          to: "updateBalance"
         },
         {
           title: "Sobre",
