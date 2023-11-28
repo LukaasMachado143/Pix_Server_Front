@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<redirect-add-balance/>
 		<card-carousel-transfer v-for="transfers, index in transfersList" :key="index"
 			:class="index == transfersList.length - 1 ? '' : 'mb-4'" :data="transfers" />
 	</div>
@@ -7,8 +8,9 @@
 
 <script>
 import CardCarouselTransfer from './components/card-carousel-transfer.vue'
+import RedirectAddBalance from './components/redirect-add-balance.vue'
 export default {
-	components: { CardCarouselTransfer },
+	components: { CardCarouselTransfer, RedirectAddBalance },
 	data() {
 		return {
 			transfersList: [
