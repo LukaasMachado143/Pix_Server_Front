@@ -9,6 +9,7 @@ import logOutMain from "@/views/main/log-out/log-out-main.vue";
 import makeTransferMain from "@/views/main/make-transfer/make-transfer-main.vue";
 import listTransferMain from "@/views/main/list-transfer/list-transfer-main.vue";
 import updateBalanceMain from "@/views/main/update-balance/update-balance-main.vue";
+import pageNotFound from "@/views/main/page-not-found/page-not-found-main.vue";
 
 Vue.use(VueRouter);
 
@@ -60,7 +61,17 @@ const routes = [
         name: "updateBalance",
         component: updateBalanceMain,
       },
+      {
+        path: "*",
+        name: "notFound",
+        component: pageNotFound,
+      },
     ],
+  },
+  {
+    path: "*",
+    name: "notFound",
+    component: pageNotFound,
   },
 ];
 
