@@ -8,10 +8,14 @@
 </template>
 
 <script>
-import appBar from '@/components/app-bar/app-bar.vue'
+import appBar from "@/components/app-bar/app-bar.vue";
 export default {
   components: { appBar },
-}
+  created() {
+    const data = localStorage.getItem("pixServerData");
+    if (!data) this.$router.push({ name: "login" });
+  },
+};
 </script>
 
 <style lang="scss" scoped>
