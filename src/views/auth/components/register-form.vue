@@ -4,7 +4,7 @@
       <h1 class="text-center">Registrar-se</h1>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
-          v-model="login.email"
+          v-model="user.email"
           color="blue"
           label="Email"
           append-icon="mdi-email"
@@ -13,7 +13,7 @@
           :disabled="isLoading"
         />
         <v-text-field
-          v-model="login.name"
+          v-model="user.name"
           color="blue"
           label="Nome"
           append-icon="mdi-account"
@@ -22,7 +22,7 @@
           :disabled="isLoading"
         />
         <v-text-field
-          v-model="login.pixKey"
+          v-model="user.pixKey"
           color="blue"
           label="Chave Pix"
           append-icon="mdi-key"
@@ -31,7 +31,7 @@
           :disabled="isLoading"
         />
         <v-text-field
-          v-model="login.password"
+          v-model="user.password"
           :type="type"
           color="blue"
           label="Senha"
@@ -42,7 +42,7 @@
           :disabled="isLoading"
         />
         <v-text-field
-          v-model="login.confirmPassword"
+          v-model="user.confirmPassword"
           :type="type"
           color="blue"
           label="Confirme sua senha"
@@ -79,7 +79,7 @@ export default {
   data() {
     return {
       valid: true,
-      login: {
+      user: {
         email: null,
         name: null,
         pixKey: null,
@@ -94,7 +94,7 @@ export default {
           "A senha precisa ter no mínimo 8 caracteres !",
       ],
       confirmPasswordRule: [
-        (v) => v == this.login.password || "Senhas não conferem !",
+        (v) => v == this.user.password || "Senhas não conferem !",
       ],
       type: "password",
       unlockBtn: false,
@@ -109,7 +109,7 @@ export default {
     },
 
     async initialState() {
-      this.login = {
+      this.user = {
         email: null,
         name: null,
         pixKey: null,
@@ -123,9 +123,8 @@ export default {
       this.isLoading = true;
       let message,
         type = null;
-      delete this.login.confirmPassword;
       this.service
-        .createUser(this.login)
+        .createUser(this.user)
         .then((res) => {
           message = res.data.message;
           if (res.status == 201) {
@@ -152,7 +151,7 @@ export default {
   },
 
   watch: {
-    login: {
+    user: {
       async handler() {
         await this.validate();
       },
