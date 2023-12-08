@@ -105,7 +105,6 @@ export default {
   methods: {
     async validate() {
       const isValid = await this.$refs.form.validate();
-      console.log(isValid);
       this.unlockBtn = isValid;
     },
 
