@@ -4,6 +4,8 @@ function getURL() {
         window.location.host.includes("192.168.18.22:8080") ||
         window.location.host.includes("localhost:8080") ||
         window.location.host.includes("192.168.18.21:8080")
+        ||
+        window.location.host.includes("192.168.18.22:8081")
     ) {
         return "http://localhost:3000";
     } else {
