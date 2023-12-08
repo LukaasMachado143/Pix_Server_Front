@@ -29,6 +29,7 @@
         :loading="isLoading"
         color="light-blue lighten-1"
         width="100%"
+        @click="runLogin"
       >
         <span class="white--text">entrar</span>
       </v-btn>
@@ -44,6 +45,7 @@
 </template>
 
 <script>
+import UserService from "@/services/user-service.js";
 export default {
   name: "LoginForm",
   data() {
@@ -63,12 +65,46 @@ export default {
           "A senha precisa ter no mínimo 8 caracteres !",
       ],
       unlockBtn: false,
+      service: new UserService(),
     };
   },
   methods: {
     async validate() {
       const isValid = await this.$refs.form.validate();
       this.unlockBtn = isValid;
+    },
+    initialState() {
+      this.$refs.form.reset();
+      this.$refs.form.resetValidation();
+    },
+    runLogin() {
+      this.isLoading = true;
+      let message,
+        type = null;
+      this.service
+        .login(this.login)
+        .then((res) => {
+          console.log(res);
+          message = res.data.message;
+          type = res.data.success ? "success" : "info";
+          if (res.data.success) {
+            localStorage.setItem("pixServerData", JSON.stringify(res.data.data));
+            this.initialState();
+            this.$router.push({name:'listTransfer'})
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          message = error;
+          type = "error";
+        })
+        .finally(() => {
+          this.isLoading = false;
+          this.$store.commit("snackbarStore/set", {
+            message,
+            type,
+          });
+        });
     },
   },
   watch: {

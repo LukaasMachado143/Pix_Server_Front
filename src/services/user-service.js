@@ -5,4 +5,8 @@ export default class BuffetService {
     async createUser(request) {
         return await api.post(`${this.prefix}/create`, request)
     }
+
+    async login(request) {
+        return await api.post(`${this.prefix}/login`, request)
+    }
 }
