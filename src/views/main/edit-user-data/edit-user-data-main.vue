@@ -1,23 +1,19 @@
 <template>
-  <v-row no-gutters justify="center">
-    <v-card class="pa-4" width="500px">
-      <h2 class="text-center">Editar dados</h2>
-      <v-text-field color="blue" label="Email" append-icon="mdi-email" />
-      <v-text-field color="blue" label="Usuário" append-icon="mdi-account" />
-      <v-text-field color="blue" label="Chave Pix" append-icon="mdi-key" />
-      <v-text-field color="blue" label="Senha" append-icon="mdi-lock" />
-      <v-file-input color="blue" label="Foto de Perfil" append-icon="mdi-image-edit" />
-      <v-btn color="light-blue lighten-1" width="100%">
-        <span class="white--text">Salvar</span>
-      </v-btn>
-    </v-card>
-  </v-row>
+  <v-container fluid>
+    <h2 class="white--text text-center mb-4">Atualizar Dados</h2>
+    <v-row no-gutters justify="center" style="gap: 32px">
+      <Simple-data />
+      <Password-change />
+      <Profile-image />
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+import PasswordChange from "./components/password-change.vue";
+import ProfileImage from "./components/profile-image.vue";
+import SimpleData from "./components/simple-data.vue";
 export default {
-
-}
+  components: { SimpleData, PasswordChange, ProfileImage },
+};
 </script>
-
-<style></style>
