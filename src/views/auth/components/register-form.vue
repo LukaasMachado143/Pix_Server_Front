@@ -128,11 +128,11 @@ export default {
       this.service
         .createUser(this.login)
         .then((res) => {
-          console.log(res);
           message = res.data.message;
           if (res.status == 201) {
             this.initialState();
             type = "success";
+            this.$router.push({ name: "login" });
           } else {
             type = "info";
           }
