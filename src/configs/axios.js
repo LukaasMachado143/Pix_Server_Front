@@ -19,10 +19,10 @@ var api = axios.create({
     baseURL,
 });
 
-// api.interceptors.request.use(function (config) {
-//     const auth = JSON.parse(localStorage.getItem("userDataManagementBuffet"));
-//     if (auth) config.headers["Authorization"] = "Bearer " + auth.token;
-//     return config;
-// });
+api.interceptors.request.use(function (config) {
+    const auth = JSON.parse(localStorage.getItem("pixServerData"));
+    if (auth) config.headers["Authorization"] = "Bearer " + auth.token;
+    return config;
+});
 
 export default api;
