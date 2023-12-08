@@ -15,6 +15,10 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/',
+    redirect: '/main/listTransfer'
+  },
+  {
     path: "/auth",
     name: "auth",
     component: authMain,
