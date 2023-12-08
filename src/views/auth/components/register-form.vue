@@ -10,14 +10,16 @@
           append-icon="mdi-email"
           required
           :rules="[...requiredRule, ...emailRule]"
+          :disabled="isLoading"
         />
         <v-text-field
           v-model="login.name"
           color="blue"
-          label="Usuário"
+          label="Nome"
           append-icon="mdi-account"
           required
           :rules="requiredRule"
+          :disabled="isLoading"
         />
         <v-text-field
           v-model="login.pixKey"
@@ -26,6 +28,7 @@
           append-icon="mdi-key"
           required
           :rules="requiredRule"
+          :disabled="isLoading"
         />
         <v-text-field
           v-model="login.password"
@@ -36,6 +39,7 @@
           :append-icon="type == 'text' ? 'mdi-eye-closed' : 'mdi-eye'"
           @click:append="type == 'text' ? (type = 'password') : (type = 'text')"
           :rules="[...requiredRule, ...passwordRule]"
+          :disabled="isLoading"
         />
         <v-text-field
           v-model="login.confirmPassword"
@@ -45,11 +49,18 @@
           required
           :append-icon="type == 'text' ? 'mdi-eye-closed' : 'mdi-eye'"
           :rules="[...requiredRule, ...confirmPasswordRule]"
+          :disabled="isLoading"
         />
-        <v-btn :disabled="!unlockBtn" color="light-blue lighten-1" width="100%">
-          <span class="white--text">cadastrar</span>
-        </v-btn>
       </v-form>
+      <v-btn
+        :disabled="!unlockBtn"
+        :loading="isLoading"
+        color="light-blue lighten-1"
+        width="100%"
+        @click="createUser"
+      >
+        <span class="white--text">cadastrar</span>
+      </v-btn>
       <p
         class="text-center mt-2"
         style="cursor: pointer"
@@ -62,6 +73,7 @@
 </template>
   
 <script>
+import UserService from "@/services/user-service.js";
 export default {
   name: "RegisterForm",
   data() {
@@ -84,9 +96,10 @@ export default {
       confirmPasswordRule: [
         (v) => v == this.login.password || "Senhas não conferem !",
       ],
-
       type: "password",
       unlockBtn: false,
+      isLoading: false,
+      service: new UserService(),
     };
   },
   methods: {
@@ -94,6 +107,48 @@ export default {
       const isValid = await this.$refs.form.validate();
       console.log(isValid);
       this.unlockBtn = isValid;
+    },
+
+    async initialState() {
+      this.login = {
+        email: null,
+        name: null,
+        pixKey: null,
+        password: null,
+        confirmPassword: null,
+      };
+      await this.$refs.form.resetValidation();
+    },
+
+    createUser() {
+      this.isLoading = true;
+      let message,
+        type = null;
+      delete this.login.confirmPassword;
+      this.service
+        .createUser(this.login)
+        .then((res) => {
+          console.log(res);
+          message = res.data.message;
+          if (res.status == 201) {
+            this.initialState();
+            type = "success";
+          } else {
+            type = "info";
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          message = error;
+          type = "error";
+        })
+        .finally(() => {
+          this.isLoading = false;
+          this.$store.commit("snackbarStore/set", {
+            message,
+            type,
+          });
+        });
     },
   },
 
