@@ -17,14 +17,21 @@
 <script>
 export default {
   methods: {
-    animatedLetters() {
-      alert('deslogando !')
-    }
+    logOut() {
+      setTimeout(() => {
+        localStorage.removeItem("pixServerData");
+        this.$store.commit("snackbarStore/set", {
+          message: "Deslogado com sucesso !",
+          type: "success",
+        });
+        this.$router.push({ name: "login" });
+      }, 3000);
+    },
   },
   created() {
-    this.animatedLetters()
-  }
-}
+    this.logOut();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
