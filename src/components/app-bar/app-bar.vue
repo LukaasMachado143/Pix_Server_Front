@@ -39,19 +39,14 @@ export default {
     return {
       pageList: [
         {
-          title: "Realizar Transferência",
-          icon: "mdi-swap-horizontal",
-          to: "makeTransfer",
-        },
-        {
           title: "Lista de Transferências",
           icon: "mdi-view-list",
           to: "listTransfer",
         },
         {
-          title: "Adicionar Saldo",
-          icon: "mdi-wallet-plus",
-          to: "updateBalance",
+          title: "Realizar Transferência",
+          icon: "mdi-swap-horizontal",
+          to: "makeTransfer",
         },
       ],
       userList: [
@@ -68,7 +63,27 @@ export default {
       ],
     };
   },
-  
+  computed: {
+    balanceAccount() {
+      return this.$store.getters["userStore/userData"].balance;
+    },
+  },
+  methods: {
+    oranizePageList() {
+      if (this.balanceAccount && this.balanceAccount <= 100) {
+        this.pageList.push({
+          title: "Adicionar Saldo",
+          icon: "mdi-wallet-plus",
+          to: "updateBalance",
+        });
+      } else {
+        this.pageList.filter((page) => page.to != "updateBalance");
+      }
+    },
+  },
+  mounted() {
+    this.oranizePageList();
+  },
 };
 </script>
 
