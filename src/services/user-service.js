@@ -1,6 +1,6 @@
 import api from "@/configs/axios";
 
-export default class BuffetService {
+export default class UserService {
     prefix = "user"
     async createUser(request) {
         return await api.post(`${this.prefix}/create`, request)
@@ -16,5 +16,9 @@ export default class BuffetService {
 
     async updateSimple(id, request) {
         return await api.put(`${this.prefix}/update/${id}`, request)
+    }
+
+    async updatePassword(id, request) {
+        return await api.put(`${this.prefix}/updatePassword/${id}`, request)
     }
 }
