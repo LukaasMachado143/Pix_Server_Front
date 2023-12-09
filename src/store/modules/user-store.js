@@ -23,6 +23,11 @@ const mutations = {
     state.pixKey = data.pixKey
     state.profileImageUrl = data.profileImageUrl
     state.balance = data.balance
+  },
+  simpleData(state, data) {
+    state.email = data.email
+    state.name = data.name
+    state.pixKey = data.pixKey
   }
 };
 

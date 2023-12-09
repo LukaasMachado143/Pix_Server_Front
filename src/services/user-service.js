@@ -13,4 +13,8 @@ export default class BuffetService {
     async getUser(email) {
         return await api.get(`${this.prefix}/${email}`)
     }
+
+    async updateSimple(id, request) {
+        return await api.put(`${this.prefix}/update/${id}`, request)
+    }
 }
