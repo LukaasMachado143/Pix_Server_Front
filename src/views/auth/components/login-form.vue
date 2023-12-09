@@ -84,13 +84,15 @@ export default {
       this.service
         .login(this.login)
         .then((res) => {
-          console.log(res);
           message = res.data.message;
           type = res.data.success ? "success" : "info";
           if (res.data.success) {
-            localStorage.setItem("pixServerData", JSON.stringify(res.data.data));
+            localStorage.setItem(
+              "pixServerData",
+              JSON.stringify(res.data.data)
+            );
             this.initialState();
-            this.$router.push({name:'listTransfer'})
+            this.$router.push({ name: "main" });
           }
         })
         .catch((error) => {

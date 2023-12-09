@@ -2,6 +2,9 @@
   <v-container fluid class="pa-0">
     <app-bar />
     <div class="main-container pt-4 px-4">
+      <v-row justify="center" class="mt-4" v-if="isLoading">
+        <v-progress-circular indeterminate color="red" size="100" />
+      </v-row>
       <router-view />
     </div>
   </v-container>
@@ -9,11 +12,43 @@
 
 <script>
 import appBar from "@/components/app-bar/app-bar.vue";
+import UserService from "@/services/user-service.js";
 export default {
   components: { appBar },
+  data() {
+    return {
+      isLoading: false,
+      service: new UserService(),
+    };
+  },
+  methods: {
+    setUser(data) {
+      this.isLoading = true;
+      const email = JSON.parse(data).email;
+      this.service
+        .getUser(email)
+        .then((res) => {
+          this.$store.commit("userStore/set", res.data.data);
+          if (this.$route.name != "listTransfer")
+            this.$router.push({ name: "listTransfer" });
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
+    },
+  },
+  computed: {
+    userData() {
+      return this.$store.getters["userStore/userData"];
+    },
+  },
   created() {
     const data = localStorage.getItem("pixServerData");
     if (!data) this.$router.push({ name: "login" });
+    else this.setUser(data);
   },
 };
 </script>

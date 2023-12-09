@@ -9,4 +9,8 @@ export default class BuffetService {
     async login(request) {
         return await api.post(`${this.prefix}/login`, request)
     }
+
+    async getUser(email) {
+        return await api.get(`${this.prefix}/${email}`)
+    }
 }
