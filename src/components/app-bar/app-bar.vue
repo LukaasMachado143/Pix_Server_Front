@@ -2,27 +2,27 @@
   <v-app-bar rounded color="blue">
     <v-menu transition="slide-x-transition" close-on-content-click offset-y>
       <template v-slot:activator="{ on, attrs }">
-        <v-app-bar-nav-icon v-bind="attrs" v-on="on" class="mr-4" color="white"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon
+          v-bind="attrs"
+          v-on="on"
+          class="mr-4"
+          color="white"
+        ></v-app-bar-nav-icon>
       </template>
       <router-list :list="pageList" />
     </v-menu>
     <v-toolbar-title>
-      <span class="white--text">
-        Pix Server
-      </span>
+      <span class="white--text"> Pix Server </span>
     </v-toolbar-title>
     <v-spacer />
-    <v-row no-gutters justify="end" align="center" class="mr-4">
-      <v-icon color="white" class="mr-1">
-        mdi-wallet
-      </v-icon>
-      <span class="white--text">{{ setCurrency(2500) }}</span>
-    </v-row>
+    <Balance-account />
     <v-menu transition="slide-x-transition" close-on-content-click offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn icon class="mr-2" v-bind="attrs" v-on="on">
-          <v-img src="https://randomuser.me/api/portraits/women/85.jpg"
-            style="width: 55px; height: 55px; border-radius: 50%;"></v-img>
+          <v-img
+            src="https://randomuser.me/api/portraits/women/85.jpg"
+            style="width: 55px; height: 55px; border-radius: 50%"
+          ></v-img>
         </v-btn>
       </template>
       <router-list :list="userList" />
@@ -31,48 +31,45 @@
 </template>
 
 <script>
-import setCurrency from '@/utils/setCurrency'
-import routerList from "./components/router-list.vue"
+import routerList from "./components/router-list.vue";
+import BalanceAccount from "./components/balance-account.vue";
 export default {
-  components: { routerList },
+  components: { routerList, BalanceAccount },
   data() {
     return {
       pageList: [
         {
           title: "Realizar Transferência",
           icon: "mdi-swap-horizontal",
-          to: "makeTransfer"
+          to: "makeTransfer",
         },
         {
           title: "Lista de Transferências",
           icon: "mdi-view-list",
-          to: "listTransfer"
+          to: "listTransfer",
         },
         {
           title: "Adicionar Saldo",
           icon: "mdi-wallet-plus",
-          to: "updateBalance"
+          to: "updateBalance",
         },
       ],
       userList: [
         {
           title: "Editar dados",
           icon: "mdi-account-cog",
-          to: "editUser"
+          to: "editUser",
         },
         {
           title: "Sair",
           icon: "mdi-account-arrow-left",
-          to: "logOut"
+          to: "logOut",
         },
-      ]
-    }
+      ],
+    };
   },
-  methods: {
-    setCurrency
-  }
-
-}
+  
+};
 </script>
 
 <style></style>
