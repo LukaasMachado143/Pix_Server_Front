@@ -42,7 +42,7 @@
           :disabled="isLoading"
         />
         <v-text-field
-          v-model="user.confirmPassword"
+          v-model="confirmPassword"
           :type="type"
           color="blue"
           label="Confirme sua senha"
@@ -84,8 +84,8 @@ export default {
         name: null,
         pixKey: null,
         password: null,
-        confirmPassword: null,
       },
+      confirmPassword: null,
       requiredRule: [(v) => !!v || "Campo Obrigadtório !"],
       emailRule: [(v) => /.+@.+\..+/.test(v) || "E-mail inválido !"],
       passwordRule: [
@@ -109,14 +109,8 @@ export default {
     },
 
     async initialState() {
-      this.user = {
-        email: null,
-        name: null,
-        pixKey: null,
-        password: null,
-        confirmPassword: null,
-      };
-      await this.$refs.form.resetValidation();
+      await this.$refs.form.reset();
+      // await this.$refs.form.resetValidation();
     },
 
     createUser() {
@@ -152,6 +146,12 @@ export default {
 
   watch: {
     user: {
+      async handler() {
+        await this.validate();
+      },
+      deep: true,
+    },
+    confirmPassword: {
       async handler() {
         await this.validate();
       },
