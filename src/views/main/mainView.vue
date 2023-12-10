@@ -1,20 +1,22 @@
 <template>
   <v-container fluid class="pa-0">
-    <app-bar />
+    <app-bar v-if="!disabledAppbar" />
     <div class="main-container pt-4 px-4">
       <v-row justify="center" class="mt-4" v-if="isLoading">
         <v-progress-circular indeterminate color="red" size="100" />
       </v-row>
       <router-view />
     </div>
+    <Refresh-token />
   </v-container>
 </template>
 
 <script>
 import appBar from "@/components/app-bar/app-bar.vue";
 import UserService from "@/services/user-service.js";
+import RefreshToken from "@/components/refresh-token.vue";
 export default {
-  components: { appBar },
+  components: { appBar, RefreshToken },
   data() {
     return {
       isLoading: false,
@@ -22,9 +24,8 @@ export default {
     };
   },
   methods: {
-    setUser(data) {
+    setUser(email) {
       this.isLoading = true;
-      const email = JSON.parse(data).email;
       this.service
         .getUser(email)
         .then((res) => {
@@ -44,11 +45,17 @@ export default {
     userData() {
       return this.$store.getters["userStore/userData"];
     },
+    disabledAppbar() {
+      return this.$route.name == "logOut";
+    },
   },
   created() {
     const data = localStorage.getItem("pixServerData");
     if (!data) this.$router.push({ name: "login" });
-    else this.setUser(data);
+    else {
+      const email = JSON.parse(data).email;
+      this.setUser(email);
+    }
   },
 };
 </script>
