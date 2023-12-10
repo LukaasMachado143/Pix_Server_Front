@@ -72,7 +72,7 @@ export default {
     },
     updatePassword() {
       this.isLoading = true;
-      const id = this.$store.getters["userStore/userData"].id;
+      const id = this.$store.getters["userStore/id"];
       let message,
         type = null;
       this.service

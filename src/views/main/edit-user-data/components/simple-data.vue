@@ -79,7 +79,7 @@ export default {
 
     updateData() {
       this.isLoading = true;
-      const id = this.$store.getters["userStore/userData"].id;
+      const id = this.$store.getters["userStore/id"]
       let message,
         type = null;
       this.servie

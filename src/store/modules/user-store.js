@@ -35,7 +35,9 @@ const mutations = {
 };
 
 const getters = {
-  userData: state => state
+  userData: state => state,
+  id: state => state.id,
+  balance: state => state.balance
 };
 
 export default {

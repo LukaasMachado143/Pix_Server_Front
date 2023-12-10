@@ -11,7 +11,7 @@ import setCurrency from "@/utils/setCurrency";
 export default {
   computed: {
     balanceValue() {
-      return this.$store.getters["userStore/userData"].balance;
+      return this.$store.getters["userStore/balance"];
     },
   },
   methods: {

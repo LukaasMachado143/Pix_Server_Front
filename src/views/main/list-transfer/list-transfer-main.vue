@@ -67,7 +67,7 @@ export default {
   },
   computed: {
     balanceAccount() {
-      return this.$store.getters["userStore/userData"].balance;
+      return this.$store.getters["userStore/balance"];
     },
   },
 };
