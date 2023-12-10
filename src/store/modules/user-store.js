@@ -3,6 +3,7 @@ const state = {
   email: null,
   name: null,
   pixKey: null,
+  phone: null,
   profileImageUrl: null,
   balance: null,
 };
@@ -13,6 +14,7 @@ const mutations = {
     state.email = null
     state.name = null
     state.pixKey = null
+    state.phone = null
     state.profileImageUrl = null
     state.balance = null
   },
@@ -21,6 +23,7 @@ const mutations = {
     state.email = data.email
     state.name = data.name
     state.pixKey = data.pixKey
+    state.phone = data.phone
     state.profileImageUrl = data.profileImageUrl
     state.balance = data.balance
   },

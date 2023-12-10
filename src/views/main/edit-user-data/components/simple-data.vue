@@ -21,6 +21,13 @@
       label="Chave Pix"
       append-icon="mdi-key"
     />
+    <v-text-field
+      v-model="userData.phone"
+      :disabled="isLoading"
+      color="blue"
+      label="Telefone"
+      append-icon="mdi-phone"
+    />
     <v-btn
       :disabled="!unlockBtn"
       :loading="isLoading"
@@ -43,6 +50,7 @@ export default {
         email: null,
         name: null,
         pixKey: null,
+        phone: null,
       },
       unlockBtn: false,
       servie: new UserService(),
@@ -54,6 +62,7 @@ export default {
       this.userData.email = userStoreData.email;
       this.userData.name = userStoreData.name;
       this.userData.pixKey = userStoreData.pixKey;
+      this.userData.phone = userStoreData.phone;
     },
     compareDataToDiferents(newValue) {
       const userStoreData = this.$store.getters["userStore/userData"];
@@ -61,6 +70,7 @@ export default {
         email: userStoreData.email,
         name: userStoreData.name,
         pixKey: userStoreData.pixKey,
+        phone: userStoreData.phone,
       };
       const oldString = JSON.stringify(oldUserData);
       const newString = JSON.stringify(newValue);
@@ -80,6 +90,7 @@ export default {
           if (res.data.success) {
             this.$store.commit("userStore/simpleData", this.userData);
             type = "success";
+            this.unlockBtn = false;
           } else {
             type = "info";
             this.getuserData();
