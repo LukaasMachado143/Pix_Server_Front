@@ -14,6 +14,10 @@ export default class UserService {
         return await api.get(`${this.prefix}/${email}`)
     }
 
+    async getAllUsers(id) {
+        return await api.get(`${this.prefix}/list/${id}`)
+    }
+
     async updateSimple(id, request) {
         return await api.put(`${this.prefix}/update/${id}`, request)
     }
