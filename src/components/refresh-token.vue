@@ -1,7 +1,6 @@
 <template>
   <v-dialog v-model="isOpen" width="300" persistent>
     <v-card class="pa-4">
-      <h1>{{ isAuthorized }}</h1>
       <h3 class="text-center">Seu token está inválido !</h3>
       <v-form v-model="valid" lazy-validation ref="form">
         <v-text-field
