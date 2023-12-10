@@ -7,10 +7,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isAuthorized: false
   },
   getters: {
+    checkAuthorized: state => state.isAuthorized
   },
   mutations: {
+    setAuthorized(state, data) {
+      state.isAuthorized = data
+    }
   },
   actions: {
   },
