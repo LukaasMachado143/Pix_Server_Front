@@ -49,6 +49,7 @@ export default {
     setConectedUser() {
       const userData = this.$store.getters["userStore/userData"];
       return {
+        id: userData.id,
         imagePath: "https://randomuser.me/api/portraits/women/85.jpg",
         name: userData.name,
         phone: userData.phone,
