@@ -1,13 +1,14 @@
 <template>
   <v-row no-gutters justify="center">
     <v-col cols="12">
-      <h1 class="text-center">Registrar-se</h1>
+      <h1 class="text-center">Registre-se</h1>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
           v-model="user.email"
           color="blue"
           label="Email"
           append-icon="mdi-email"
+          placeholder="Ex: fulano@gmail.com"
           required
           :rules="[...requiredRule, ...emailRule]"
           :disabled="isLoading"
@@ -17,6 +18,17 @@
           color="blue"
           label="Nome"
           append-icon="mdi-account"
+          placeholder="Ex: Fulano da Silva"
+          required
+          :rules="requiredRule"
+          :disabled="isLoading"
+        />
+        <v-text-field
+          v-model="user.phone"
+          color="blue"
+          label="Telefone"
+          append-icon="mdi-phone"
+          placeholder="Ex: (xx) xxxxx-xxxx"
           required
           :rules="requiredRule"
           :disabled="isLoading"
@@ -26,6 +38,7 @@
           color="blue"
           label="Chave Pix"
           append-icon="mdi-key"
+          placeholder="Ex: Use sua criatividade..."
           required
           :rules="requiredRule"
           :disabled="isLoading"
@@ -83,6 +96,7 @@ export default {
         email: null,
         name: null,
         pixKey: null,
+        phone: null,
         password: null,
       },
       confirmPassword: null,
