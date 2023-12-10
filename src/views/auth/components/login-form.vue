@@ -87,10 +87,12 @@ export default {
           message = res.data.message;
           type = res.data.success ? "success" : "info";
           if (res.data.success) {
+            localStorage.removeItem("pixServerData");
             localStorage.setItem(
               "pixServerData",
               JSON.stringify(res.data.data)
             );
+            this.$store.commit("setAuthorized", false);
             this.initialState();
             this.$router.push({ name: "main" });
           }
