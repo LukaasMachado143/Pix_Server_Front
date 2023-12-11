@@ -83,7 +83,7 @@ export default {
     },
   },
   methods: {
-    getChartAccumulator() {
+    getChartHistory() {
       this.isLoading = true;
       this.service
         .getChartHistory(this.pixKey)
@@ -104,7 +104,7 @@ export default {
   watch: {
     pixKey: {
       handler(value) {
-        if (value) this.getChartAccumulator();
+        if (value) this.getChartHistory();
       },
     },
   },
