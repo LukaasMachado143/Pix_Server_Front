@@ -94,7 +94,7 @@ export default {
             );
             this.$store.commit("setAuthorized", false);
             this.initialState();
-            this.$router.push({ name: "main" });
+            this.$router.push({ name: "listTransfer" });
           }
         })
         .catch((error) => {

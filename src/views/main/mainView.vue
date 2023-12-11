@@ -30,8 +30,6 @@ export default {
         .getUser(email)
         .then((res) => {
           this.$store.commit("userStore/set", res.data.data);
-          if (this.$route.name != "listTransfer")
-            this.$router.push({ name: "listTransfer" });
         })
         .catch((error) => {
           console.log(error);
