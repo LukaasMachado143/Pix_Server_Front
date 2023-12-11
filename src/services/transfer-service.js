@@ -6,4 +6,8 @@ export default class TransferService {
         return await api.post(`${this.prefix}/create`, request)
     }
 
+    async getListTrasnfer(type, pixKey) {
+        return await api.get(`${this.prefix}/${type}/${pixKey}`)
+    }
+
 }

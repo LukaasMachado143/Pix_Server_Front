@@ -31,6 +31,7 @@ const mutations = {
     state.email = data.email
     state.name = data.name
     state.pixKey = data.pixKey
+    state.phone = data.phone
   },
   updateBalance(state, data) {
     state.balance = data
@@ -40,7 +41,8 @@ const mutations = {
 const getters = {
   userData: state => state,
   id: state => state.id,
-  balance: state => state.balance
+  balance: state => state.balance,
+  pixKey: state => state.pixKey
 };
 
 export default {
