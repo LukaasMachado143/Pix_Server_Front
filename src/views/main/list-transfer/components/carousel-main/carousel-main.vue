@@ -11,7 +11,7 @@
 
 <script>
 import TransferService from "@/services/transfer-service";
-import CardCarouselTransfer from "../card-carousel-transfer.vue";
+import CardCarouselTransfer from "./components/card-carousel-transfer.vue";
 export default {
   components: { CardCarouselTransfer },
   data() {
