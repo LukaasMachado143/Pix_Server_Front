@@ -1,6 +1,6 @@
 <template>
-  <highcharts v-if="false" class="hc" :options="chartOptions" />
-  <Loading-card v-else :title="chartOptions.title.text" />
+  <Loading-card v-if="isLoading" :title="chartOptions.title.text" />
+  <highcharts v-else class="hc" :options="chartOptions" />
 </template>
 
 <script>
@@ -22,6 +22,8 @@ import noData from "highcharts/modules/no-data-to-display";
 noData(Highcharts);
 import setCurrency from "@/utils/setCurrency";
 import LoadingCard from "./loading-card.vue";
+import TransferService from "@/services/transfer-service.js";
+
 export default {
   components: { LoadingCard },
   data() {
@@ -55,7 +57,7 @@ export default {
         series: [
           {
             name: "Recebidas",
-            data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            data: [],
             color: "green",
             dataLabels: {
               enabled: false,
@@ -63,7 +65,7 @@ export default {
           },
           {
             name: "Enviadas",
-            data: [10, 9, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            data: [],
             color: "red",
             dataLabels: {
               enabled: false,
@@ -71,7 +73,40 @@ export default {
           },
         ],
       },
+      isLoading: false,
+      service: new TransferService(),
     };
+  },
+  computed: {
+    pixKey() {
+      return this.$store.getters["userStore/pixKey"];
+    },
+  },
+  methods: {
+    getChartAccumulator() {
+      this.isLoading = true;
+      this.service
+        .getChartHistory(this.pixKey)
+        .then((res) => {
+          if (res.data.success) {
+            this.chartOptions.series[0].data = res.data.data.received;
+            this.chartOptions.series[1].data = res.data.data.sended;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
+    },
+  },
+  watch: {
+    pixKey: {
+      handler(value) {
+        if (value) this.getChartAccumulator();
+      },
+    },
   },
 };
 </script>
