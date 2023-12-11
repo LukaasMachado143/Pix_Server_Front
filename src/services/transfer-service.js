@@ -10,4 +10,12 @@ export default class TransferService {
         return await api.get(`${this.prefix}/${type}/${pixKey}`)
     }
 
+    async getChartAccumulator(pixKey) {
+        return await api.get(`${this.prefix}/chart/accumulator/${pixKey}`)
+    }
+
+    async getChartHistory(pixKey) {
+        return await api.get(`${this.prefix}/chart/history/${pixKey}`)
+    }
+
 }
