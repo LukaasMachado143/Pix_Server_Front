@@ -16,6 +16,7 @@
         v-model="trasnferValue"
         type="number"
         min="0"
+        :disabled="isLoading"
       />
     </v-row>
     <v-row no-gutters justify="end" class="mt-4">
@@ -24,10 +25,16 @@
         class="mr-4"
         outlined
         @click="$emit('resetSelectedUser')"
+        :disabled="isLoading"
       >
         <span>cancelar</span>
       </v-btn>
-      <v-btn color="green" :disabled="!trasnferValue">
+      <v-btn
+        @click="runTransfer"
+        color="green"
+        :disabled="!trasnferValue"
+        :loading="isLoading"
+      >
         <span class="white--text">transferir</span>
       </v-btn>
     </v-row>
@@ -36,6 +43,7 @@
 
 <script>
 import userData from "./user-data.vue";
+import TransferService from "@/services/transfer-service";
 export default {
   components: { userData },
   props: ["selectedUser"],
@@ -43,6 +51,8 @@ export default {
     return {
       conectedUser: null,
       trasnferValue: null,
+      isLoading: false,
+      service: new TransferService(),
     };
   },
   methods: {
@@ -55,6 +65,45 @@ export default {
         phone: userData.phone,
         pixKey: userData.pixKey,
       };
+    },
+    createRequest() {
+      return {
+        senderPixKey: this.conectedUser.pixKey,
+        receiverPixKey: this.selectedUser.pixKey,
+        value: parseFloat(this.trasnferValue),
+      };
+    },
+    runTransfer() {
+      this.isLoading = true;
+      let message,
+        type = null;
+      const request = this.createRequest();
+      this.service
+        .create(request)
+        .then((res) => {
+          console.log(res);
+          message = res.data.message;
+          type = res.data.success ? "success" : "info";
+          if (res.data.success) {
+            this.updateBalance(this.trasnferValue);
+            this.trasnferValue = null;
+            this.$emit("resetSelectedUser");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          message = error;
+          type = "error";
+        })
+        .finally(() => {
+          this.isLoading = false;
+          this.$store.commit("snackbarStore/set", { message, type });
+        });
+    },
+    updateBalance(value) {
+      const balance = this.$store.getters["userStore/balance"];
+      const newBalance = balance - value;
+      this.$store.commit("userStore/updateBalance", newBalance);
     },
   },
   watch: {
