@@ -31,6 +31,9 @@ const mutations = {
     state.email = data.email
     state.name = data.name
     state.pixKey = data.pixKey
+  },
+  updateBalance(state, data) {
+    state.balance = data
   }
 };
 
