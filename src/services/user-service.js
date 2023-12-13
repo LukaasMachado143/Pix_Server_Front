@@ -25,4 +25,7 @@ export default class UserService {
     async updatePassword(id, request) {
         return await api.put(`${this.prefix}/updatePassword/${id}`, request)
     }
+    async updateBalance(id, value) {
+        return await api.put(`${this.prefix}/updateBalance/${id}/${value}`)
+    }
 }
