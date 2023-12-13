@@ -117,6 +117,9 @@ export default {
       },
     },
   },
+  mounted() {
+    if (this.pixKey) this.getChartAccumulator();
+  },
 };
 </script>
 

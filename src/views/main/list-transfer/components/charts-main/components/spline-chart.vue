@@ -108,6 +108,10 @@ export default {
       },
     },
   },
+
+  mounted() {
+    if (this.pixKey) this.getChartHistory();
+  },
 };
 </script>
 
