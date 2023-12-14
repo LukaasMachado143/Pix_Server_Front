@@ -26,24 +26,65 @@
 </template>
 
 <script>
-import UserService from "@/services/user-service";
+import TransferSerice from "@/services/transfer-service";
 export default {
   data() {
     return {
       balance: null,
       isLoading: false,
-      service: new UserService(),
+      service: new TransferSerice(),
     };
   },
 
+  computed: {
+    pixKey() {
+      return this.$store.getters["userStore/pixKey"];
+    },
+  },
+
   methods: {
-    updateBalance() {
+    updateBalanceOriginal() {
       this.isLoading = true;
       const id = this.$store.getters["userStore/id"];
       let message,
         type = null;
       this.service
         .updateBalance(id, this.balance)
+        .then((res) => {
+          console.log(res);
+          message = res.data.message;
+          type = res.data.success ? "success" : "info";
+          if (res.data.success) {
+            this.balance = null;
+            setTimeout(() => {
+              this.$router.push({ name: "listTransfer" });
+            }, 1000);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          message = error;
+          type = "error";
+        })
+        .finally(() => {
+          this.isLoading = false;
+          this.$store.commit("snackbarStore/set", { message, type });
+        });
+    },
+    createRequest() {
+      return {
+        senderPixKey: "SISTEMA_PIX_SERVER",
+        receiverPixKey: this.pixKey,
+        value: parseFloat(this.balance),
+      };
+    },
+    updateBalance() {
+      this.isLoading = true;
+      let message,
+        type = null;
+      const request = this.createRequest();
+      this.service
+        .create(request)
         .then((res) => {
           console.log(res);
           message = res.data.message;
