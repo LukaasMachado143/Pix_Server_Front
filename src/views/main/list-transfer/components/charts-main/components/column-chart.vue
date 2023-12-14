@@ -21,7 +21,7 @@ HighchartsMore(Highcharts);
 import noData from "highcharts/modules/no-data-to-display";
 noData(Highcharts);
 import setCurrency from "@/utils/setCurrency";
-import LoadingCard from "./loading-card.vue";
+import LoadingCard from "../../../../../../components/loading-chart-card.vue";
 import TransferService from "@/services/transfer-service.js";
 export default {
   components: { LoadingCard },

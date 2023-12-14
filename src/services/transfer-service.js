@@ -17,5 +17,8 @@ export default class TransferService {
     async getChartHistory(pixKey) {
         return await api.get(`${this.prefix}/chart/history/${pixKey}`)
     }
+    async getChartHistoryAccount(pixKey) {
+        return await api.get(`${this.prefix}/chart/history/account/${pixKey}`)
+    }
 
 }

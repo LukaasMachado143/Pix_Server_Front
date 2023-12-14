@@ -34,8 +34,12 @@ export default {
       }
     },
   },
-  mounted() {
-    this.setlistTransferPage();
+  watch: {
+    balanceAccount: {
+      handler() {
+        this.setlistTransferPage();
+      },
+    },
   },
 };
 </script>
