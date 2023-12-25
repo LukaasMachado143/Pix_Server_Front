@@ -28,4 +28,8 @@ export default class UserService {
     async updateBalance(id, value) {
         return await api.put(`${this.prefix}/updateBalance/${id}/${value}`)
     }
+
+    async updateProfileImage(id, image) {
+        return await api.put(`${this.prefix}/updateProfileImage/${id}`, image)
+    }
 }

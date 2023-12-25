@@ -4,7 +4,7 @@
       <v-col align="center" cols="12" sm="6" class="pr-2">
         <h3>Atual</h3>
         <v-img
-          src="https://randomuser.me/api/portraits/women/85.jpg"
+          :src="profileImageUrl"
           style="width: 150px; height: 150px; border-radius: 50%"
         ></v-img>
       </v-col>
@@ -37,32 +37,81 @@
       style="display: none"
       value="selectedImage"
     />
-    <v-btn :disabled="!selectedImage" color="light-blue lighten-1" width="100%">
+    <!--   -->
+    <v-btn
+      :disabled="!selectedImage"
+      :loading="isLoading"
+      color="light-blue lighten-1"
+      width="100%"
+      @click="saveNewImage"
+    >
       <span class="white--text">Salvar</span>
     </v-btn>
   </v-card>
 </template>
 
 <script>
+import UserService from "@/services/user-service";
 export default {
   data() {
     return {
       selectedImage: null,
       url: "https://th.bing.com/th/id/OIP.hcRhDT8KVqzySjYJmBhlzgHaHa?rs=1&pid=ImgDetMain",
+      isLoading: false,
+      service: new UserService(),
     };
+  },
+  computed: {
+    profileImageUrl() {
+      return this.$store.getters["userStore/profileImageUrl"];
+    },
+    id() {
+      return this.$store.getters["userStore/id"];
+    },
   },
   methods: {
     openFileInput() {
-      this.$refs.fileInput.click();
+      if (!this.isLoading) this.$refs.fileInput.click();
     },
     handleFileChange(event) {
       this.selectedImage = event.target.files[0];
-      this.url = URL.createObjectURL(this.selectedImage);
+      if (this.selectedImage)
+        this.url = URL.createObjectURL(this.selectedImage);
     },
     resetSelectedImage() {
       this.selectedImage = null;
       this.url =
         "https://th.bing.com/th/id/OIP.hcRhDT8KVqzySjYJmBhlzgHaHa?rs=1&pid=ImgDetMain";
+    },
+    saveNewImage() {
+      this.isLoading = true;
+      let message,
+        type = null;
+      const formData = new FormData();
+      formData.append("file", this.selectedImage);
+      this.service
+        .updateProfileImage(this.id, formData)
+        .then((res) => {
+          console.log(res);
+          message = res.data.message;
+          type = res.data.success ? "success" : "info";
+          if (res.data.success) {
+            this.$store.commit(
+              "userStore/profileImageUrl",
+              res.data.data.location
+            );
+            this.resetSelectedImage();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          message = error;
+          type = "error";
+        })
+        .finally(() => {
+          this.isLoading = false;
+          this.$store.commit("snackbarStore/set", { message, type });
+        });
     },
   },
 };

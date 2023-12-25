@@ -35,6 +35,9 @@ const mutations = {
   },
   updateBalance(state, data) {
     state.balance = data
+  },
+  profileImageUrl(state, data) {
+    state.profileImageUrl = data
   }
 };
 
