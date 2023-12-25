@@ -20,7 +20,7 @@
       <template v-slot:activator="{ on, attrs }">
         <v-btn icon class="mr-2" v-bind="attrs" v-on="on">
           <v-img
-            src="https://randomuser.me/api/portraits/women/85.jpg"
+            :src="profileImageUrl"
             style="width: 55px; height: 55px; border-radius: 50%"
           ></v-img>
         </v-btn>
@@ -66,6 +66,9 @@ export default {
   computed: {
     balanceAccount() {
       return this.$store.getters["userStore/balance"];
+    },
+    profileImageUrl() {
+      return this.$store.getters["userStore/profileImageUrl"];
     },
   },
   methods: {

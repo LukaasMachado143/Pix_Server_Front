@@ -42,7 +42,9 @@ const getters = {
   userData: state => state,
   id: state => state.id,
   balance: state => state.balance,
-  pixKey: state => state.pixKey
+  pixKey: state => state.pixKey,
+  profileImageUrl: state => state.profileImageUrl,
+
 };
 
 export default {
