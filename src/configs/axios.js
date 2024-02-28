@@ -10,7 +10,9 @@ function getURL() {
     ) {
         return "http://localhost:3000";
     } else {
-        return "https://pix-server-back.vercel.app/";
+        // return "https://pix-server-back.vercel.app/";
+        return "http://localhost:3000";
+
     }
 }
 
