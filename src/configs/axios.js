@@ -1,20 +1,7 @@
 import axios from "axios";
 import store from "@/store/index"
-function getURL() {
-    if (
-        window.location.host.includes("192.168.18.22:8080") ||
-        window.location.host.includes("localhost:8080") ||
-        window.location.host.includes("192.168.18.21:8080")
-        ||
-        window.location.host.includes("192.168.18.22:8081")
-    ) {
-        return "http://localhost:3000";
-    } else {
-        return "https://pix-server-back.vercel.app/";
-    }
-}
 
-const baseURL = getURL();
+const baseURL = process.env.VUE_APP_BACK_API
 
 var api = axios.create({
     baseURL,
